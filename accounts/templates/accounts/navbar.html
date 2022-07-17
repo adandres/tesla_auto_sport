@@ -1,0 +1,40 @@
+<!--TODO ajouter les liens manquants-->
+
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="{% static '/img/logo.png' %}" width="25px" height="25px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Accueil
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">À Propos</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                <div class="dropdown-menu">
+                    {% if request.user.id is not None %}
+                    <a class="dropdown-item" href="{% url 'single_profile' request.user.id %} ">Profil</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Se deconnecter</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login' %}">Se connecter</a>
+                    {% endif %}
+                    {% if admin == True %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'admin_panel'%}">Panneau D'administration</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

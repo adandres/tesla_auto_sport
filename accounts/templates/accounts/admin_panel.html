@@ -1,0 +1,151 @@
+<!--TODO ajouter l'accueil du panel admin et le mettre accesssible qu'au roles secretary et admin-->
+
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/css/admin_panel.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <h3 class="text-center"> Forfaits </h3>
+      <a href="{% url 'create_bundle'%}" class="btn btn-warning btn-lg btn-block btn-sm">Créer un Forfait</a>
+      <table class="table table-striped table-dark table-sm">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th>Nom</th>
+          <th>Mettre à jour</th>
+          <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in bundles %}
+        <tr>
+          <th scope="row">{{i.id}}</th>
+          <td>{{i.name}}</td>
+          <td><a href="{% url 'update_bundle' i.id%}" class="btn btn-primary btn-sm">Mettre à jour</a></td>
+          <td><a href="{% url 'delete_bundle' i.id%}" class="btn btn-danger btn-sm">Supprimer</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'show_bundle'%}" class="btn btn-success">Voir Tout</a>
+    </div>
+    <div class="col-6">
+      <h3 class="text-center"> Roles </h3>
+     {% if logged_user_role.role_id >= 0 %} <a href="{% url 'create_role'%}" class="btn btn-warning btn-lg btn-block btn-sm">Créer un Role</a>
+      {%else %}
+      <a href="#" class="btn btn-warning btn-lg btn-block btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">Créer un Role</a>
+      {% endif %}
+      <table class="table table-striped table-dark table-sm">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th>{{ logged_user_role.role_id }}</th>
+          <th>{% if logged_user_role.role_id >= 0 %}Mettre à jour{% endif %}</th>
+          <th>{% if logged_user_role.role_id >= 0 %}Supprimer{% endif %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in roles %}
+        <tr>
+          <th scope="row">{{i.id}}</th>
+          <td>{{i.name}}</td>
+          <td>{% if logged_user_role.role_id >= 0 %}<a href="{% url 'update_role' i.id%}" class="btn btn-primary btn-sm">Mettre à jour</a>{% endif %}</td>
+          <td>{% if logged_user_role.role_id >= 0 %}<a href="{% url 'delete_role' i.id%}" class="btn btn-danger btn-sm">Supprimer</a>{% endif %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'show_role'%}" class="btn btn-success">Voir Tout</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-center"> Plannings </h3>
+      <a href="{% url 'create_appointment'%}" class="btn btn-warning btn-lg btn-block btn-sm">Ajouter un rendez-vous</a>
+      <table class="table table-striped table-dark table-sm">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lieu</th>
+          <th>Instructeur</th>
+          <th>Elève</th>
+          <th>Mettre à jour</th>
+          <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in schedules %}
+        <tr>
+          <th scope="row">{{i.date_start}}</th>
+          <td>{{i.place}}</td>
+          <td>{{i.id_instructor}}</td>
+          <td>{{i.id_student}}</td>
+          <td><a href="{% url 'update_role' i.id%}" class="btn btn-primary btn-sm">Mettre à jour</a></td>
+          <td><a href="{% url 'delete_role' i.id%}" class="btn btn-danger btn-sm">Supprimer</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+      </table>
+      <a href="{% url 'show_role'%}" class="btn btn-success">Voir Tout</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-center"> Utilisateurs </h3>
+      <a href="{% url 'register'%}" class="btn btn-warning btn-lg btn-block btn-sm">Ajouter un utilisateur</a>
+      <table class="table table-striped table-dark table-sm">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>adresse mail</th>
+          <th>Role</th>
+          <th>Profile</th>
+          <th>Mettre à jour</th>
+          <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in users %}
+        <tr>
+          <th scope="row">{{i.id}}</th>
+          <td>{{i.last_name}}</td>
+          <td>{{i.first_name}}</td>
+          <td>{{i.email}}</td>
+          <td>
+          {% for j in users_infos %}
+          {% if j.user_id == i.id %}
+          {{ j.role }}
+          {% endif %}
+          {% endfor %}
+          </td>
+          <td><a href="{% url 'single_profile' i.id%}" class="btn btn-primary btn-sm">Profile</a></td>
+          {% for j in users_infos %}
+            {% if j.user_id == i.id %}
+              {% if j.role|stringformat:"s"  != "Admin" %}
+                {{j.role}}
+                <td><a href="{% url 'update_user' i.id%}" class="btn btn-primary btn-sm">Mettre à jour</a></td>
+                <td><a href="{% url 'delete_user' i.id%}" class="btn btn-danger btn-sm">Supprimer</a></td>
+              {% else %}
+                <td></td>
+                <td></td>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'show_role'%}" class="btn btn-success">Voir Tout</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

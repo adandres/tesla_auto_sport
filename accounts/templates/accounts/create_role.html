@@ -1,0 +1,15 @@
+<!--TODO ajouter le style pour le formulaire et rendre accessible qu'au secretaire et admin-->
+{% extends 'accounts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="Submit">
+</form>
+
+{% endblock %}

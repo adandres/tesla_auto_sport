@@ -1,0 +1,67 @@
+<!--TODO ajouter les infos et le style de la page profile d'utilisateur (utilisée par l'utilisateur et par les roles autorisés a voir les infos)-->
+
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/css/profile.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Profil</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    {{user.first_name}} {{user.last_name}}<br> Adresse mail : {{user.email}} role: {{user_info.role}}
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Numéro de téléphone</b> : {{user_info.phone}}</li>
+                    <li class="list-group-item"><b>Adresse</b> : {{user_info.address}}</li>
+                    <li class="list-group-item"><b>Ville</b> : {{user_info.city}}</li>
+                    <li class="list-group-item"><b>Code Postal</b>: {{user_info.postal_code}}</li>
+                    <li class="list-group-item">
+                    <a href="{% url 'update_user' user.id %}" class="btn btn-primary btn-sm">Mettre à jour</a>
+                    {% if admin %}
+                        <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
+                    {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <br><b>Heures</b>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Heures Restantes : {{user_info.hours_left}}</li>
+                    <li class="list-group-item">Heures Totales : {{user_info.hours_total}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3>Prochains Rendez-vous</h3>
+    <table class="table table-striped table-dark table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Instructeur</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in schedule %}
+        <tr>
+            <td>{{i.date_start}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

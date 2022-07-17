@@ -1,0 +1,24 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static '/css/prices.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="card-deck">
+        {% for i in bundles %}
+        <div class="card">
+            <img src="../../../static/img/{{i.picture_name}}" class="card-img-top" alt="Permis" width="350px" height="280px">
+            <div class="card-body">
+
+                <h5 class="card-title">{{i.name}}</h5>
+                <p class="card-text">{{i.description}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Forfait à {{i.price}} Euros (Les forfaits contiennent 20h de conduite. Frais supplémentaires à prévoir si plus d'heures sont nécéssaires) </small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

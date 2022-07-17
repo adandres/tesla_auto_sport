@@ -1,0 +1,14 @@
+<!--TODO ajouter le style pour le formulaire et rendre accessible qu'au secretaire et admin-->
+
+{% extends 'accounts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+<p>Êtes-vous sûr de vouloir supprimer le bundle : {{bundle.name}}</p>
+<form action="{% url 'delete_bundle' bundle.id %}" method="POST">
+    {% csrf_token %}
+    <button type="button" class="btn btn-primary"><a href="#">Annuler</a></button>
+    <input type="submit" class="btn btn-success" name="Confirmer" value="Confirmer">
+</form>
+{% endblock %}

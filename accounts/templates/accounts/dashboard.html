@@ -1,0 +1,16 @@
+{% extends 'accounts/main.html' %}
+{% block style %}
+<link rel="stylesheet" href="../../../static/css/homepage.css">
+{% endblock %}
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Bienvenue sur le site de Galy's Driving Machine</h1>
+    <p class="lead">Votre centre pour tout ce qui à rapport à la conduite automobile</p>
+    <hr class="my-4">
+    <p>Venez rencontrer nos instructeurs. Les meilleurs dans leur domaine!</p>
+    <hr>
+    <a class="btn btn-primary btn-lg" href="{% url 'contact' %}" role="button">Contactez nous</a>
+</div>
+
+{% endblock content %}
