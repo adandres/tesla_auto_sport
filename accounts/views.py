@@ -110,6 +110,7 @@ def updateRole(request, pk):
 @login_required(login_url='login')
 def updateUser(request, pk):
     user = User.objects.get(id=pk)
+    userinfo = UserInfo.objects.get(user_id=request.user.id)
     form = UserRoleForm(request.POST or None, initial={'user': user})
     if request.method == 'POST':
         if form.is_valid():
@@ -124,10 +125,10 @@ def updateUser(request, pk):
             userinfo.save()
             return redirect('admin_panel')
         else:
-            context = {'form': form, 'user': user}
+            context = {'form': form, 'user': user, 'userinfo': userinfo}
             return render(request, 'accounts/update_user.html', context)
     else:
-        context = {'form': form, 'user': user}
+        context = {'form': form, 'user': user, 'userinfo': userinfo}
         return render(request, 'accounts/update_user.html', context)
 
 

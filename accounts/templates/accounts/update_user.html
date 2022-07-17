@@ -43,12 +43,14 @@
                         </div>
                         {{form.city}}
                     </div>
+                    {% if userinfo.role|stringformat:"s" == 'Admin' or userinfo.role|stringformat:"s" == 'Secretary' %}
                     <div class="input-group mb-2">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i><p> Role</p></span>
                         </div>
                         {{form.role}}
                     </div>
+                    {% endif %}
                     <div class="input-group mb-2 invisible">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
