@@ -1,40 +1,81 @@
 <!--TODO ajouter les liens manquants-->
 
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><img src="{% static '/img/logo.png' %}" width="25px" height="25px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home' %}">Accueil
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">À Propos</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-                <div class="dropdown-menu">
-                    {% if request.user.id is not None %}
-                    <a class="dropdown-item" href="{% url 'single_profile' request.user.id %} ">Profil</a>
-                    <a class="dropdown-item" href="{% url 'logout' %}">Se deconnecter</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'login' %}">Se connecter</a>
-                    {% endif %}
-                    {% if admin == True %}
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'admin_panel'%}">Panneau D'administration</a>
-                    {% endif %}
-                </div>
-            </li>
-        </ul>
+<header class="bg-moonlit sticky-top">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <nav class="navbar navbar-expand-xl">
+                    
+                    <a class="navbar-logo" href="{% url 'home' %}"><img src="{% static '/img/logo/logo-orange.svg' %}" alt="école de conduite"></a>
+                    <button class="navbar-toggle navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto ulNav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                            </li>
+                            <li class="nav-item dropdown d-none d-xl-block">
+                                <a class="nav-link" href="#" type="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">Profil <span class="rotation">&#10511;</span></a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    {% if request.user.id is not None %}
+                                    <li><a class="dropdown-item dropdown-item-1" href="{% url 'single_profile' request.user.id %}">Profil</a></li>
+                                    <li><a class="dropdown-item dropdown-item-2" href="{% url 'logout' %}">Se déconnecter</a></li>
+                                        {% if admin == True %}
+                                        <li><a class="dropdown-item dropdown-item-3" href="{% url 'admin_panel'%}">Panneau d'administration</a></li>
+                                        {% else %}
+                                        <li><a class="dropdown-item dropdown-item-3" href="{% url 'home' %}">Retour à l'accueil</a></li>
+                                        {% endif %}
+                                    {% else %}
+                                    <li><a class="dropdown-item dropdown-item-1" href="{% url 'login' %}">Se connecter</a></li>
+                                    <li><a class="dropdown-item dropdown-item-2" href="{% url 'contact' %}">Nous contacter</a></li>
+                                    <li><a class="dropdown-item dropdown-item-3" href="{% url 'home' %}">Retour à l'accueil</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+
+                            {% if request.user.id is not None %}
+                            <li class="nav-item d-block d-xl-none">
+                                <a class="nav-link" href="{% url 'single_profile' request.user.id %}">Profil</a>
+                            </li>
+                            <li class="nav-item d-block d-xl-none">
+                                <a class="nav-link" href="{% url 'logout' %}">Se déconnecter</a>
+                            </li>
+
+                                {% if admin == True %}
+                                <li class="nav-item d-block d-xl-none">
+                                    <a class="nav-link" href="{% url 'admin_panel'%}">Panneau d'administration</a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item d-block d-xl-none">
+                                    <a class="nav-link" href="{% url 'home' %}">Retour à l'accueil</a>
+                                </li>
+                                {% endif %}
+
+                            {% else %}
+                            <li class="nav-item d-block d-xl-none">
+                                <a class="nav-link" href="{% url 'login' %}">Se connecter</a>
+                            </li>
+                            <li class="nav-item d-block d-xl-none">
+                                <a class="nav-link" href="{% url 'contact' %}">Nous contacter</a>
+                            </li>
+                            <li class="nav-item d-block d-xl-none">
+                                <a class="nav-link" href="{% url 'home' %}">Retour à l'accueil</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </div>
-</nav>
+    <div class="progress-container">
+        <div class="progress-bar" id="myProgressBar"></div>
+    </div>
+</header>
