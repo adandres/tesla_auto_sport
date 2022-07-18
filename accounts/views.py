@@ -8,7 +8,6 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
-
 from .decorators import unauthenticated_user, allowed_users
 from .models import Role, Bundle, UserInfo, Schedule
 from .forms import CreateUserForm, UserInfoForm, RoleForm, BundleForm, ScheduleForm, UserRoleForm
@@ -230,12 +229,18 @@ def singleProfile(request, pk):
 def add_appointments(request):
     if request.method == 'POST':
         form = ScheduleForm(request.POST)
+        print("aaaaaaaaaa")
+        print(form.data['instructor'])
         if form.is_valid():
+            print('bbbbbbbb')
             form.save()
             if request.user.group == 'admin' or request.user.group == 'secretary':
                 return redirect('admin_panel')
             else:
                 return redirect('instructor_panel')
+        else:
+            context = {'form': form}
+            return render(request, 'accounts/create_appointment.html', context)
     else:
         form = ScheduleForm()
         context = {'form': form}

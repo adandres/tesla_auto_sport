@@ -65,7 +65,7 @@ class BundleForm(ModelForm):
 class ScheduleForm(ModelForm):
     class Meta:
         model = Schedule
-        fields = '__all__'
+        fields = ['date_start', 'instructor', 'student', 'place']
         widgets = {
             'date_start': forms.DateTimeInput(attrs={'type': 'datetime-local'})
         }
