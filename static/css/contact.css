@@ -1,0 +1,49 @@
+body {
+    background-image: url("../img/bg-black.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contact h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: "Montserrat Bold";
+    border-bottom: 2px solid var(--orange);
+    width: fit-content;
+    padding-bottom: 0.5rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.qr-cadre {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.qr-img {
+    width: 45%;
+    border: 3px solid var(--orange);
+    background-color: rgba(0,0,0,0.3);
+    padding: 25px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.qr-below {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.qr-below p {
+    width: 45%;
+    border: 3px solid var(--orange);
+    background-color: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: unset;
+    font-size: 1.2rem;
+    font-family: "Montserrat Semi", Arial, Helvetica, sans-serif;
+}

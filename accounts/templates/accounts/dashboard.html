@@ -1,16 +1,37 @@
 {% extends 'accounts/main.html' %}
 {% block style %}
-<link rel="stylesheet" href="../../../static/css/homepage.css">
+<link rel="stylesheet" href="../../../static/css/dashboard.css">
 {% endblock %}
 {% block content %}
 
-<div class="jumbotron">
-    <h1 class="display-4">Bienvenue sur le site de Galy's Driving Machine</h1>
-    <p class="lead">Votre centre pour tout ce qui à rapport à la conduite automobile</p>
-    <hr class="my-4">
-    <p>Venez rencontrer nos instructeurs. Les meilleurs dans leur domaine!</p>
-    <hr>
-    <a class="btn btn-primary btn-lg" href="{% url 'contact' %}" role="button">Contactez nous</a>
+{% load static %}
+
+<div class="container mt-5 container-dash">
+
+    <div class="row">
+        <div class="col-12 position-relative">
+            <h1>Le <span class="font-orange">drift</span> en <span class="font-orange">tesla</span><br/>Accessible à <span class="font-orange">tous</span></h1>
+            <img alt="" class="dash-logo" src="{% static '/img/logo/logo-orange.svg' %}" />
+        </div>
+    </div>
+
+    <div class="mt-10 trait-orange"></div>
+
+    <div class="row row-dash-2 align-items-center mt-10">
+        <div class="col-5 d-flex">
+            <img src="{% static '/img/teslapng.png' %}" alt="" class="car-dash" />
+        </div>
+
+        <div class="col-6">
+            <h2>Envie de sensations fortes&nbsp;?</h2>
+            <p class="mt-4">
+                Découvez nos formules <span class="font-orange">uniques</span> pour apprendre le drift avec votre <span class="font-orange">Tesla</span> pour épater en soirée ou pour ressentir des <span class="font-orange">sensations fortes</span>&nbsp;!<br />
+                Nos moniteurs s'assureront de votre sécurité à tout instant pour faire de vous un as de la piste, et vous aideront à décrocher votre
+                <span class="font-orange">permis de drift</span>.
+            </p>
+        </div>
+    </div>
+
 </div>
 
 {% endblock content %}

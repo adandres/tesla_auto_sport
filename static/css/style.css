@@ -24,6 +24,10 @@
     --soft-blue: #eff3ff;
     --dark-blue-link: #3960d4;
 	--orange: #E8B021;
+	--orange-shade1 : #cf9d1e;
+	--orange-shade2 : #bc8c11;
+	--orange-shade3 : #b5850b;
+	--orange-shade4 : #a47500;
 	--black: #000;
 }
 
@@ -56,15 +60,19 @@ body {
 }
 
 .mt-05 {
-    margin-top: 0.05rem;
+    margin-top: 0.05rem !important;
 }
 
 .mt-6 {
-    margin-top: 4rem;
+    margin-top: 4rem !important;
 }
 
 .mt-7 {
-    margin-top: 5rem;
+    margin-top: 5rem !important;
+}
+
+.mt-10 {
+	margin-top: 7rem !important;
 }
 
 /** COLORS UTILITIES **/
@@ -80,6 +88,13 @@ body {
 }
 
 /** FONT UTILITIES **/
+
+h1 {
+	color: white;
+	font-size: 5rem;
+	font-family: "Montserrat Semi", Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+}
 
 a {
     color: inherit;
@@ -105,6 +120,22 @@ a:hover {
 
 .font-orange {
 	color: var(--orange) !important;
+}
+
+.font-orange1 {
+	color: var(--orange-shade1) !important;
+}
+
+.font-orange2 {
+	color: var(--orange-shade2) !important;
+}
+
+.font-orange3 {
+	color: var(--orange-shade3) !important;
+}
+
+.font-orange4 {
+	color: var(--orange-shade4) !important;
 }
 
 .font-dark-blue {
@@ -322,8 +353,11 @@ a:hover {
 /** FOOTER **/
 
 footer {
-    padding-top: 1px;
+    padding: 15px;
     margin-top: 5rem;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 footer svg {
@@ -341,15 +375,9 @@ footer svg {
     margin-bottom: -1.5rem;
 }
 
-.container-footer {
-    margin-top: 2rem;
-    padding-bottom: 5rem;
-}
-
 .container-footer p {
     font-family: "Montserrat Semi";
     font-size: 1.3rem;
-    margin-bottom: 0.5rem;
 }
 
 .col-footer:nth-child(3) p:not(.footer-title) {
@@ -358,7 +386,7 @@ footer svg {
 }
 
 .col-footer:nth-child(3) p:not(.footer-title):hover {
-    color: var(--bright-blue);
+    color: var(--orange);
 }
 
 .container-footer .col-footer:nth-child(2) {
@@ -405,9 +433,10 @@ footer svg {
     text-transform: uppercase;
     text-align: center;
     text-decoration: underline;
-    text-decoration-color: var(--bright-blue);
+    text-decoration-color: var(--orange);
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
+	margin-bottom: 0 !important;
 }
 
 /** FIXED BUTTONS **/
