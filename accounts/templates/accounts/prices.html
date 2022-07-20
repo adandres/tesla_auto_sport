@@ -4,21 +4,32 @@
 <link rel="stylesheet" href="{% static '/css/prices.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="card-deck">
-        {% for i in bundles %}
-        <div class="card">
-            <img src="../../../static/img/{{i.picture_name}}" class="card-img-top" alt="Permis" width="350px" height="280px">
-            <div class="card-body">
 
-                <h5 class="card-title">{{i.name}}</h5>
-                <p class="card-text">{{i.description}}</p>
+<div class="prices">
+
+    <h1 class="mt-5">Tarifs</h1>
+
+    <div class="container mt-4">
+
+        <div class="row justify-content-between">
+
+            {% for i in bundles %}
+            <div class="col-4 col-price mt-3">
+                <div class="card-price">
+                    <img src="{% static '/img/orange-tesla.jpg' %}" alt="" class="price-img">
+                    <h2 class="mt-3">{{i.name}}</h2>
+                    <p class="mt-3 card-desc">{{i.description}}</p>
+                    <p class="mt-3">Prix&nbsp;:&nbsp;<span class="font-orange">{{i.price}}</span>&nbsp;€</p>
+                </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">Forfait à {{i.price}} Euros (Les forfaits contiennent 20h de conduite. Frais supplémentaires à prévoir si plus d'heures sont nécéssaires) </small>
-            </div>
+            {% endfor %}
+
         </div>
-        {% endfor %}
+
+
     </div>
+
 </div>
+
+
 {% endblock %}

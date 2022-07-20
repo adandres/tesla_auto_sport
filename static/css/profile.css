@@ -1,0 +1,17 @@
+body {
+    background-image: url("../img/bg-black.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h3 {
+    color: white;
+}
+
+.container + .mt-7 {
+    color: var(--black);
+}
+
+.card {
+    background-color: var(--orange);
+}
